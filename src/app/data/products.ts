@@ -4,7 +4,7 @@ import { Category, ShoppingListData } from '../types';
  * Product photos live in /public/products/{id}.jpg (800×800, bundled with the app).
  * Override any item via the in-app "URL de imagen" field.
  */
-const productPhoto = (id: string) => `/products/${id}.jpg`;
+const productPhoto = (id: string) => `/products/${id}.jpg?v=4`;
 
 export const categorias: Category[] = [
   {
