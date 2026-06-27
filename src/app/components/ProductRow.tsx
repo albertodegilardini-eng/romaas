@@ -13,7 +13,7 @@ import { bestLineTotal } from '../utils/pricing';
 export function ProductThumb({
   src,
   alt,
-  size = 50,
+  size = 56,
 }: {
   src?: string;
   alt: string;
@@ -32,10 +32,10 @@ export function ProductThumb({
         height: size,
         flexShrink: 0,
         borderRadius: 2.5,
-        bgcolor: '#f8fafc',
-        border: '1px solid rgba(0,0,0,0.08)',
-        boxShadow: '0 2px 8px rgba(15,23,42,0.12)',
-        '& img': { objectFit: 'cover' },
+        bgcolor: '#fff',
+        border: '1px solid rgba(0,0,0,0.06)',
+        boxShadow: '0 2px 10px rgba(15,23,42,0.14)',
+        '& img': { objectFit: 'cover', transform: 'scale(1.02)' },
       }}
     >
       {!ok && <BrokenImage sx={{ fontSize: size * 0.42, color: '#cbd5e0' }} />}

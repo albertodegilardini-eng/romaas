@@ -1,11 +1,10 @@
 import { Category } from '../types';
 
 /**
- * Product imagery — curated Unsplash crops at 480px for crisp retina thumbnails.
- * Override any item via the in-app "URL de imagen" field or the `imagen` key below.
+ * Product photos live in /public/products/{id}.jpg (800×800, bundled with the app).
+ * Override any item via the in-app "URL de imagen" field.
  */
-const img = (id: string, focal = 'entropy') =>
-  `https://images.unsplash.com/photo-${id}?w=480&h=480&fit=crop&crop=${focal}&q=85&auto=format`;
+const productPhoto = (id: string) => `/products/${id}.jpg`;
 
 export const categorias: Category[] = [
   {
@@ -21,7 +20,6 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'Nunca comprar la regular.',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1564865866775-58a977a4a3a0'),
       },
       {
         id: 'corona-light',
@@ -31,7 +29,6 @@ export const categorias: Category[] = [
         comprar: '1 six / 12',
         tienda: 'City Market',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1639513473133-dc1e5f12f83e'),
       },
       {
         id: 'michelob',
@@ -41,7 +38,6 @@ export const categorias: Category[] = [
         comprar: '1 six',
         tienda: 'City Market',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1618885479317-2e4b912d4c38'),
       },
       {
         id: 'agua-tonica',
@@ -52,7 +48,6 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'Para gin tonic.',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1556679343-c7306c1976bc'),
       },
       {
         id: 'agua-bonafont',
@@ -63,7 +58,6 @@ export const categorias: Category[] = [
         tienda: 'City Market / Walmart',
         notas: 'Revisar antes de que quede 1.',
         cantidad: 0, unidad: 'L', critico: true,
-        imagen: img('1548839140-29a749e1cf4d'),
       },
       {
         id: 'cafe-fruta',
@@ -74,7 +68,6 @@ export const categorias: Category[] = [
         tienda: 'Starbucks / City Market',
         notas: 'El de siempre.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1509042239860-f550ce710b93'),
       },
     ],
   },
@@ -90,7 +83,6 @@ export const categorias: Category[] = [
         comprar: '4 piezas',
         tienda: 'City Market',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1587735243475-37f3d32a68c3'),
       },
       {
         id: 'pepinos',
@@ -100,7 +92,6 @@ export const categorias: Category[] = [
         comprar: '3 piezas',
         tienda: 'City Market',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1568702846914-96b305d2aaeb'),
       },
       {
         id: 'limones',
@@ -110,7 +101,6 @@ export const categorias: Category[] = [
         comprar: '1 bolsa',
         tienda: 'City Market',
         cantidad: 0, unidad: 'bolsas', critico: false,
-        imagen: img('1582476803820-9e9e218e65b9'),
       },
       {
         id: 'mini-zanahorias',
@@ -121,7 +111,6 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'Validar etiqueta.',
         cantidad: 0, unidad: 'bolsas', critico: false,
-        imagen: img('1598170845058-32b9d6a5da37'),
       },
       {
         id: 'nopales',
@@ -131,7 +120,6 @@ export const categorias: Category[] = [
         comprar: 'Según indique',
         tienda: 'City Market',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1559181567-c3190ca9959b'),
       },
       {
         id: 'verdura-general',
@@ -142,7 +130,6 @@ export const categorias: Category[] = [
         tienda: 'City Market / Walmart',
         notas: 'Anotar faltantes concretos.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1557844352-761f2565b576'),
       },
     ],
   },
@@ -159,7 +146,6 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'Si duda del corte, foto antes de pagar.',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1558618666-fcd25c85cd64'),
       },
       {
         id: 'carne-asar',
@@ -169,7 +155,6 @@ export const categorias: Category[] = [
         comprar: '2 paquetes',
         tienda: 'City Market',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1529193591184-b1d58069ecdd'),
       },
       {
         id: 'pollo-asar',
@@ -179,7 +164,6 @@ export const categorias: Category[] = [
         comprar: '3 paquetes',
         tienda: 'City Market',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1604908176997-125f25cc6f3d'),
       },
       {
         id: 'jamon-pavo',
@@ -190,7 +174,6 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'No pavo común; preguntar si hay duda.',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1559847844-5315695dadae'),
       },
       {
         id: 'salchichas-pavo',
@@ -200,7 +183,6 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'City Market',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1485921720978-9fca4e2c1a14'),
       },
       {
         id: 'huevo',
@@ -210,7 +192,6 @@ export const categorias: Category[] = [
         comprar: '1 cartera',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1491929339380-e08dd07b9247'),
       },
     ],
   },
@@ -226,7 +207,6 @@ export const categorias: Category[] = [
         comprar: '2 paquetes',
         tienda: 'City Market / Walmart',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1551892374-ecf8754cf8b0'),
       },
       {
         id: 'arroz',
@@ -236,7 +216,6 @@ export const categorias: Category[] = [
         comprar: '2 bolsas',
         tienda: 'City Market / Walmart',
         cantidad: 0, unidad: 'bolsas', critico: false,
-        imagen: img('1536304929831-ee1ca9d44906'),
       },
       {
         id: 'pan',
@@ -247,7 +226,6 @@ export const categorias: Category[] = [
         tienda: 'City Market / Walmart',
         notas: 'Revisar caducidad.',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1509440159596-0249088772ff'),
       },
       {
         id: 'aceite',
@@ -257,7 +235,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'L', critico: false,
-        imagen: img('1474979266404-7eaacbcd87c5'),
       },
       {
         id: 'sal-condimentos',
@@ -267,7 +244,6 @@ export const categorias: Category[] = [
         comprar: 'Según falte',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1585032226651-759b368d7246'),
       },
       {
         id: 'tortillas',
@@ -277,7 +253,6 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1565299585323-38d6b0865b47'),
       },
       {
         id: 'salsas-aderezos',
@@ -287,7 +262,6 @@ export const categorias: Category[] = [
         comprar: 'Según falte',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1571942676516-bcab84649e44'),
       },
     ],
   },
@@ -303,7 +277,6 @@ export const categorias: Category[] = [
         comprar: '4 paquetes',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1558618047-3c8c76ca7d13'),
       },
       {
         id: 'bolsas-chicas',
@@ -313,7 +286,6 @@ export const categorias: Category[] = [
         comprar: '4 paquetes',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1594398901394-4e34939a4fd0'),
       },
       {
         id: 'cloro',
@@ -323,7 +295,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'L', critico: false,
-        imagen: img('1584515979956-d9f6e5d09982'),
       },
       {
         id: 'jabon-trastes',
@@ -333,7 +304,6 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1563453392212-326f5e854473'),
       },
       {
         id: 'pinol',
@@ -343,7 +313,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'L', critico: false,
-        imagen: img('1585771724684-38269d6639fd'),
       },
       {
         id: 'limpiador-bano',
@@ -353,7 +322,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'L', critico: false,
-        imagen: img('1581578949510-fa7315c4c350'),
       },
       {
         id: 'detergente',
@@ -363,7 +331,6 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1582735689369-4fe89db7114c'),
       },
       {
         id: 'suavizante',
@@ -373,7 +340,6 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1630938256703-5ca0191c4b41'),
       },
       {
         id: 'papel-higienico',
@@ -384,7 +350,6 @@ export const categorias: Category[] = [
         tienda: 'Walmart',
         notas: 'Artículo crítico.',
         cantidad: 0, unidad: 'paquetes', critico: true,
-        imagen: img('1583947215259-38e31be8751f'),
       },
       {
         id: 'servitoallas',
@@ -394,7 +359,6 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'rollos', critico: false,
-        imagen: img('1617447450083-d3c2f86d1f6b'),
       },
       {
         id: 'toallas-humedas',
@@ -404,7 +368,6 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1584634731339-252c581abfc5'),
       },
       {
         id: 'esponjas',
@@ -415,7 +378,6 @@ export const categorias: Category[] = [
         tienda: 'Walmart',
         notas: 'No mezclar cocina y baño.',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1585744880925-7e7d77d92de4'),
       },
       {
         id: 'guantes',
@@ -425,7 +387,6 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1612817288484-6f916006741a'),
       },
       {
         id: 'aromatizante',
@@ -435,7 +396,6 @@ export const categorias: Category[] = [
         comprar: 'Según falte',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1602928309-2c48b7440f6a'),
       },
       {
         id: 'papel-aluminio',
@@ -445,7 +405,6 @@ export const categorias: Category[] = [
         comprar: '1 rollo',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'rollos', critico: false,
-        imagen: img('1596097635121-14b63b7a0c19'),
       },
     ],
   },
@@ -461,7 +420,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1522338242992-e1ba549cb1b8'),
       },
       {
         id: 'acondicionador',
@@ -471,7 +429,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1608245449333-f02da94cd5a6'),
       },
       {
         id: 'gel-bano',
@@ -481,7 +438,6 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1556228720-195a672e8a03'),
       },
       {
         id: 'desodorante',
@@ -491,7 +447,6 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1620916565345-364f1a0e32ab'),
       },
       {
         id: 'pasta-dental',
@@ -501,7 +456,6 @@ export const categorias: Category[] = [
         comprar: '1 tubo',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1622372738946-62e02505feb3'),
       },
       {
         id: 'cepillo-dental',
@@ -511,7 +465,6 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1607613009820-a38f4a038ad0'),
       },
       {
         id: 'enjuague-bucal',
@@ -521,7 +474,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1585421514284-8bb7b93c8b9d'),
       },
       {
         id: 'rastrillos',
@@ -531,7 +483,6 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1622297844375-e0220859db83'),
       },
       {
         id: 'crema-afeitar',
@@ -541,7 +492,6 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1599305445671-ac292c295aaa'),
       },
       {
         id: 'hilo-dental',
@@ -551,7 +501,6 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1606811843499-35f17a11e847'),
       },
     ],
   },
@@ -568,7 +517,6 @@ export const categorias: Category[] = [
         tienda: 'Farmacia',
         notas: 'Pendiente: envíame tu receta y lo agrego con dosis y marca.',
         cantidad: 0, unidad: 'piezas', critico: true,
-        imagen: img('1587854691652-5c2518b8f45d'),
       },
       {
         id: 'paracetamol',
@@ -579,7 +527,6 @@ export const categorias: Category[] = [
         tienda: 'Farmacia',
         notas: 'Analgésico / fiebre.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1584308665914-d65811c7805d'),
       },
       {
         id: 'ibuprofeno',
@@ -590,7 +537,6 @@ export const categorias: Category[] = [
         tienda: 'Farmacia',
         notas: 'Antiinflamatorio.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1471864190282-a93a3070b9ec'),
       },
       {
         id: 'electrolitos',
@@ -600,7 +546,6 @@ export const categorias: Category[] = [
         comprar: '2 piezas',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1622542799864-aa69f99e0eec'),
       },
       {
         id: 'vitaminas',
@@ -610,7 +555,6 @@ export const categorias: Category[] = [
         comprar: '1 frasco',
         tienda: 'Farmacia / GNC',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: img('1556228578-8c89e096adf2'),
       },
       {
         id: 'alcohol-antiseptico',
@@ -620,7 +564,6 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'L', critico: false,
-        imagen: img('1584017911766-d451b3c7d993'),
       },
       {
         id: 'curitas',
@@ -630,7 +573,6 @@ export const categorias: Category[] = [
         comprar: '1 caja',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1603398939848-10c23823ecc3'),
       },
       {
         id: 'antiacido',
@@ -640,7 +582,6 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1666210032544-f1bafb9d4f4b'),
       },
       {
         id: 'cubrebocas',
@@ -650,7 +591,6 @@ export const categorias: Category[] = [
         comprar: '1 caja',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: img('1584464491033-06628f3a8b8a'),
       },
     ],
   },
@@ -667,7 +607,6 @@ export const categorias: Category[] = [
         tienda: 'GNC',
         notas: 'Comprar en GNC, no en City Market.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1693996045300-521e9d08cabc'),
       },
       {
         id: 'barras-proteina',
@@ -677,7 +616,6 @@ export const categorias: Category[] = [
         comprar: '5+3+2',
         tienda: 'GNC',
         cantidad: 0, unidad: 'barras', critico: false,
-        imagen: img('1553062407-98eeb64c6a62'),
       },
     ],
   },
@@ -694,7 +632,6 @@ export const categorias: Category[] = [
         tienda: 'City Market / Walmart',
         notas: 'Solo si hay invitados.',
         cantidad: 0, unidad: 'bolsas', critico: false,
-        imagen: img('1548698072-01823f80d35c'),
       },
       {
         id: 'vinos-licores',
@@ -705,7 +642,6 @@ export const categorias: Category[] = [
         tienda: 'La Europea / City Market',
         notas: 'Compra solo con instrucción expresa.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1510812431401-41d2bd2722f3'),
       },
     ],
   },
@@ -722,7 +658,6 @@ export const categorias: Category[] = [
         tienda: 'Tintorería City Market',
         notas: 'Contar prendas, revisar daño, foto del ticket.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1558175813-4c044d8cbf37'),
       },
       {
         id: 'paquetes',
@@ -733,7 +668,6 @@ export const categorias: Category[] = [
         tienda: 'Edificio',
         notas: 'Verificar nombre, depto y código.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1607344645866-009c320b63e0'),
       },
       {
         id: 'foto-ticket',
@@ -744,7 +678,6 @@ export const categorias: Category[] = [
         tienda: 'WhatsApp',
         notas: 'Enviar el mismo día.',
         cantidad: 0, unidad: 'piezas', critico: true,
-        imagen: img('1554224155-6726b3ff858f'),
       },
     ],
   },
@@ -822,5 +755,12 @@ for (const c of categorias) {
       precios[s] = Math.max(5, Math.round((p.precio * mult) / 5) * 5);
     }
     if (Object.keys(precios).length) p.precios = precios;
+  }
+}
+
+// Wire every product to its bundled photo in /public/products/
+for (const c of categorias) {
+  for (const p of c.productos) {
+    p.imagen = productPhoto(p.id);
   }
 }
