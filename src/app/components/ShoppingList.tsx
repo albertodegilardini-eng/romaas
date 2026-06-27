@@ -29,6 +29,7 @@ import {
   SearchOff,
 } from '@mui/icons-material';
 import { ShoppingListData, Product, Category, Unidad } from '../types';
+import { syncListWithCatalog } from '../data/products';
 import { formatMXN } from '../utils/format';
 import { bestLineTotal, savingsOf } from '../utils/pricing';
 
@@ -73,7 +74,7 @@ export function ShoppingList({ list, onListChange }: ShoppingListProps) {
     if (saved) {
       try {
         const parsed = JSON.parse(saved) as ShoppingListData;
-        if (parsed.id === list.id) onListChange(parsed);
+        if (parsed.id === list.id) onListChange(syncListWithCatalog(parsed));
       } catch {}
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

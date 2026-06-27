@@ -1,4 +1,4 @@
-import { Category } from '../types';
+import { Category, ShoppingListData } from '../types';
 
 /**
  * Product photos live in /public/products/{id}.jpg (800×800, bundled with the app).
@@ -763,4 +763,46 @@ for (const c of categorias) {
   for (const p of c.productos) {
     p.imagen = productPhoto(p.id);
   }
+}
+
+/** Merge saved list state with the latest catalog (photos, names, new items). */
+export function syncListWithCatalog(saved: ShoppingListData): ShoppingListData {
+  const savedCatMap = new Map(saved.categorias.map((c) => [c.id, c]));
+
+  const mergedCats = categorias.map((catalogCat) => {
+    const savedCat = savedCatMap.get(catalogCat.id);
+    const savedProdMap = new Map((savedCat?.productos ?? []).map((p) => [p.id, p]));
+
+    const productos = catalogCat.productos.map((fresh) => {
+      const savedProd = savedProdMap.get(fresh.id);
+      if (!savedProd) return { ...fresh };
+
+      const customImage =
+        !!savedProd.imagen &&
+        savedProd.imagen.startsWith('http') &&
+        !savedProd.imagen.includes('unsplash.com') &&
+        !savedProd.imagen.includes('pexels.com') &&
+        !savedProd.imagen.includes('loremflickr.com');
+
+      return {
+        ...fresh,
+        cantidad: savedProd.cantidad,
+        unidad: savedProd.unidad,
+        critico: savedProd.critico,
+        precio: savedProd.precio ?? fresh.precio,
+        precios: savedProd.precios ?? fresh.precios,
+        imagen: customImage ? savedProd.imagen : fresh.imagen,
+      };
+    });
+
+    const catalogIds = new Set(catalogCat.productos.map((p) => p.id));
+    const extras = (savedCat?.productos ?? []).filter((p) => !catalogIds.has(p.id));
+
+    return { ...catalogCat, productos: [...productos, ...extras] };
+  });
+
+  const catalogCatIds = new Set(categorias.map((c) => c.id));
+  const extraCats = saved.categorias.filter((c) => !catalogCatIds.has(c.id));
+
+  return { ...saved, categorias: [...mergedCats, ...extraCats] };
 }
