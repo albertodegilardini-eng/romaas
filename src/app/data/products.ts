@@ -13,8 +13,8 @@ export const categorias: Category[] = [
     productos: [
       {
         id: 'coca-cola',
-        nombre: 'Coca-Cola sin azúcar',
-        especificacion: 'Coca Zero, 6 latas 355 ml',
+        nombre: 'Coca-Cola Zero',
+        especificacion: 'Sin azúcar, 6 latas 355 ml',
         minimo: '1 rejilla / 2 six',
         comprar: '1 rejilla (12)',
         tienda: 'City Market',

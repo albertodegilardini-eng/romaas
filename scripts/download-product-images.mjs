@@ -4,7 +4,7 @@ import { join } from 'path';
 /** Product-id → high-quality Pexels/Unsplash direct URLs (product-accurate). */
 const SOURCES = {
   // BEBIDAS
-  'coca-cola': 'https://images.pexels.com/photos/50567/coca-cola-calculator-bottle-50567.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+  'coca-cola': 'https://images.pexels.com/photos/19504042/pexels-photo-19504042.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
   'corona-light': 'https://images.pexels.com/photos/83725/pexels-photo-83725.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
   'michelob': 'https://images.pexels.com/photos/995330/pexels-photo-995330.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
   'agua-tonica': 'https://images.pexels.com/photos/6029762/pexels-photo-6029762.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
