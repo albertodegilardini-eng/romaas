@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#0a1628" />
+    <title>Weekly Grocery AI — Smart shopping checklist</title>
+    <meta
+      name="description"
+      content="Weekly Grocery AI — a smart weekly shopping checklist with categories, per-store grouping, critical-item flags, PDF and WhatsApp export."
+    />
+
+    <!--
+      Font fix (Figma Make warned about "SF Pro Display Bold"):
+      SF Pro is Apple-proprietary and cannot be redistributed as a web font, so we
+      rely on the native system stack (renders as real SF Pro on Apple devices) and
+      load Inter — the actual UI font this app uses — from Google Fonts.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
