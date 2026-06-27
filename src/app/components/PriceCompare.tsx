@@ -3,6 +3,7 @@ import { Box, Typography, Popover, Chip } from '@mui/material';
 import { Compare } from '@mui/icons-material';
 import { Product } from '../types';
 import { PriceInput } from './shared';
+import { getStoreBrand } from './storeBrands';
 import { storesOf, bestStore } from '../utils/pricing';
 import { formatMXN } from '../utils/format';
 
@@ -76,8 +77,10 @@ export function PriceCompare({
           )}
           {stores.map((s) => {
             const isBest = best?.store === s && multi;
+            const brand = getStoreBrand(s);
             return (
               <Box key={s} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                <brand.Logo size={20} />
                 <Box sx={{ flexGrow: 1, minWidth: 0 }}>
                   <Typography
                     sx={{
@@ -89,7 +92,7 @@ export function PriceCompare({
                       textOverflow: 'ellipsis',
                     }}
                   >
-                    {s}
+                    {brand.label}
                   </Typography>
                 </Box>
                 {isBest && (

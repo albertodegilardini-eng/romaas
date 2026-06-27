@@ -11,20 +11,7 @@ import { Close, PictureAsPdf, WhatsApp, Print, ErrorOutline } from '@mui/icons-m
 import { ShoppingListData, Product } from '../types';
 import { formatMXN } from '../utils/format';
 import { bestStore, bestLineTotal, effectivePrice, savingsOf } from '../utils/pricing';
-
-// ── Store colours (for PDF sections) ─────────────────────────────────────────
-
-const STORE_COLORS: Record<string, string> = {
-  Walmart: '#0071CE',
-  'City Market': '#CC0000',
-  GNC: '#F7941D',
-  'La Europea': '#1b1b2f',
-  Starbucks: '#00704A',
-  Farmacia: '#0a9396',
-  'Farmacias del Ahorro': '#e4002b',
-  'Farmacia San Pablo': '#0057a8',
-  WhatsApp: '#25D366',
-};
+import { STORE_COLORS, getStoreBrand } from './storeBrands';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -319,6 +306,7 @@ export function SummaryDrawer({ open, onClose, list }: SummaryDrawerProps) {
         ) : (
           groups.map((group) => {
             const color = STORE_COLORS[group.store] ?? '#4a5568';
+            const brand = getStoreBrand(group.store);
             return (
               <Box key={group.store} sx={{ mb: 3 }}>
                 <Box
@@ -334,11 +322,12 @@ export function SummaryDrawer({ open, onClose, list }: SummaryDrawerProps) {
                     color: '#fff',
                   }}
                 >
+                  <brand.Logo size={22} />
                   <Typography
                     variant="subtitle2"
                     sx={{ fontWeight: 700, flexGrow: 1, letterSpacing: 0.5 }}
                   >
-                    {group.store.toUpperCase()}
+                    {brand.label.toUpperCase()}
                   </Typography>
                   <Chip
                     label={`${group.items.reduce((s, i) => s + i.product.cantidad, 0)} uds. · ${formatMXN(groupMoney(group))}`}

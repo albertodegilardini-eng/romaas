@@ -4,86 +4,9 @@ import { TableRow, TableCell, Typography, Box, Avatar, IconButton, Tooltip } fro
 import { DeleteOutline, BrokenImage, ErrorOutline } from '@mui/icons-material';
 import { QuantityStepper, UnitSelect } from './shared';
 import { PriceCompare } from './PriceCompare';
+import { StoreBadge } from './storeBrands';
 import { formatMXN } from '../utils/format';
 import { bestLineTotal } from '../utils/pricing';
-
-// ── Store brand badges ────────────────────────────────────────────────────────
-// Brand colours + initials. (Logo image assets aren't bundled in this export, so
-// we render clean coloured badges with the store's initials — no broken imports.)
-
-const STORE_BRANDS: Record<string, { label: string; bg: string; color: string }> = {
-  Walmart: { label: 'Walmart', bg: '#0071CE', color: '#fff' },
-  'City Market': { label: 'City Market', bg: '#CC0000', color: '#fff' },
-  GNC: { label: 'GNC', bg: '#F7941D', color: '#fff' },
-  'La Europea': { label: 'La Europea', bg: '#1b1b2f', color: '#d4af37' },
-  Starbucks: { label: 'Starbucks', bg: '#00704A', color: '#fff' },
-  Farmacia: { label: 'Farmacia', bg: '#0a9396', color: '#fff' },
-  'Farmacias del Ahorro': { label: 'F. del Ahorro', bg: '#e4002b', color: '#fff' },
-  'Farmacia San Pablo': { label: 'San Pablo', bg: '#0057a8', color: '#fff' },
-  WhatsApp: { label: 'WhatsApp', bg: '#25D366', color: '#fff' },
-  Edificio: { label: 'Edificio', bg: '#4a5568', color: '#fff' },
-  'Tintorería City Market': { label: 'Tintorería', bg: '#CC0000', color: '#fff' },
-};
-
-function StoreInitials({ label }: { label: string }) {
-  const initials = label.replace(/[^A-Za-z]/g, '').slice(0, 2).toUpperCase() || '??';
-  return (
-    <Box
-      sx={{
-        width: 18,
-        height: 18,
-        borderRadius: '3px',
-        bgcolor: 'rgba(255,255,255,0.22)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 8,
-        fontWeight: 900,
-        color: 'inherit',
-        flexShrink: 0,
-      }}
-    >
-      {initials}
-    </Box>
-  );
-}
-
-function StoreBadge({ name }: { name: string }) {
-  return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-      {name
-        .split('/')
-        .map((s) => s.trim())
-        .filter(Boolean)
-        .map((store) => {
-          const b = STORE_BRANDS[store];
-          return (
-            <Box
-              key={store}
-              sx={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 0.6,
-                pl: 0.5,
-                pr: 1,
-                py: 0.4,
-                borderRadius: '8px',
-                bgcolor: b?.bg ?? '#718096',
-                color: b?.color ?? '#fff',
-                fontSize: 10,
-                fontWeight: 700,
-                whiteSpace: 'nowrap',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.18)',
-              }}
-            >
-              <StoreInitials label={b?.label ?? store} />
-              {b?.label ?? store}
-            </Box>
-          );
-        })}
-    </Box>
-  );
-}
 
 // ── Product thumbnail ─────────────────────────────────────────────────────────
 
@@ -108,10 +31,10 @@ export function ProductThumb({
         width: size,
         height: size,
         flexShrink: 0,
-        borderRadius: 2,
-        bgcolor: '#fff',
-        border: '1px solid rgba(0,0,0,0.07)',
-        boxShadow: '0 1px 4px rgba(15,23,42,0.10)',
+        borderRadius: 2.5,
+        bgcolor: '#f8fafc',
+        border: '1px solid rgba(0,0,0,0.08)',
+        boxShadow: '0 2px 8px rgba(15,23,42,0.12)',
         '& img': { objectFit: 'cover' },
       }}
     >

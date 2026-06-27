@@ -1,22 +1,11 @@
 import { Category } from '../types';
 
 /**
- * Product imagery.
- *
- * The original export used tiny 80×80 Unsplash crops which rendered blurry and
- * "unaesthetic". `img()` keeps the same (working) Unsplash photos but serves them
- * at 400px @ q=80 so they stay crisp even on retina displays.
- *
- * `ph()` is for the newer GROOMING / PHARMACY items: keyword-based stock photos
- * that always resolve, so the new sections look populated until you drop in the
- * exact product shots (use the "URL de imagen" field on each item, or send me the
- * info and I'll wire them in).
+ * Product imagery — curated Unsplash crops at 480px for crisp retina thumbnails.
+ * Override any item via the in-app "URL de imagen" field or the `imagen` key below.
  */
-const img = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?w=400&h=400&fit=crop&crop=entropy&q=80&auto=format`;
-
-const ph = (keywords: string, lock: number) =>
-  `https://loremflickr.com/400/400/${keywords}?lock=${lock}`;
+const img = (id: string, focal = 'entropy') =>
+  `https://images.unsplash.com/photo-${id}?w=480&h=480&fit=crop&crop=${focal}&q=85&auto=format`;
 
 export const categorias: Category[] = [
   {
@@ -32,7 +21,7 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'Nunca comprar la regular.',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1543253687-c931c8e01820'),
+        imagen: img('1564865866775-58a977a4a3a0'),
       },
       {
         id: 'corona-light',
@@ -52,7 +41,7 @@ export const categorias: Category[] = [
         comprar: '1 six',
         tienda: 'City Market',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1665624856879-e222010e2656'),
+        imagen: img('1618885479317-2e4b912d4c38'),
       },
       {
         id: 'agua-tonica',
@@ -63,7 +52,7 @@ export const categorias: Category[] = [
         tienda: 'City Market',
         notas: 'Para gin tonic.',
         cantidad: 0, unidad: 'latas', critico: false,
-        imagen: img('1761864293808-dfb96001c534'),
+        imagen: img('1556679343-c7306c1976bc'),
       },
       {
         id: 'agua-bonafont',
@@ -472,7 +461,7 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: ph('shampoo,bottle', 11),
+        imagen: img('1522338242992-e1ba549cb1b8'),
       },
       {
         id: 'acondicionador',
@@ -482,7 +471,7 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart / City Market',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: ph('conditioner,haircare', 12),
+        imagen: img('1608245449333-f02da94cd5a6'),
       },
       {
         id: 'gel-bano',
@@ -492,7 +481,7 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: ph('soap,bodywash', 13),
+        imagen: img('1556228720-195a672e8a03'),
       },
       {
         id: 'desodorante',
@@ -502,7 +491,7 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('deodorant', 14),
+        imagen: img('1620916565345-364f1a0e32ab'),
       },
       {
         id: 'pasta-dental',
@@ -512,7 +501,7 @@ export const categorias: Category[] = [
         comprar: '1 tubo',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('toothpaste', 15),
+        imagen: img('1622372738946-62e02505feb3'),
       },
       {
         id: 'cepillo-dental',
@@ -522,7 +511,7 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('toothbrush', 16),
+        imagen: img('1607613009820-a38f4a038ad0'),
       },
       {
         id: 'enjuague-bucal',
@@ -532,7 +521,7 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: ph('mouthwash', 17),
+        imagen: img('1585421514284-8bb7b93c8b9d'),
       },
       {
         id: 'rastrillos',
@@ -542,7 +531,7 @@ export const categorias: Category[] = [
         comprar: '1 paquete',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: ph('razor,shaving', 18),
+        imagen: img('1622297844375-e0220859db83'),
       },
       {
         id: 'crema-afeitar',
@@ -552,7 +541,7 @@ export const categorias: Category[] = [
         comprar: '1 envase',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: ph('shaving,cream', 19),
+        imagen: img('1599305445671-ac292c295aaa'),
       },
       {
         id: 'hilo-dental',
@@ -562,7 +551,7 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Walmart',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('dental,floss', 20),
+        imagen: img('1606811843499-35f17a11e847'),
       },
     ],
   },
@@ -579,7 +568,7 @@ export const categorias: Category[] = [
         tienda: 'Farmacia',
         notas: 'Pendiente: envíame tu receta y lo agrego con dosis y marca.',
         cantidad: 0, unidad: 'piezas', critico: true,
-        imagen: ph('prescription,medicine', 30),
+        imagen: img('1587854691652-5c2518b8f45d'),
       },
       {
         id: 'paracetamol',
@@ -590,7 +579,7 @@ export const categorias: Category[] = [
         tienda: 'Farmacia',
         notas: 'Analgésico / fiebre.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('pills,medicine', 31),
+        imagen: img('1584308665914-d65811c7805d'),
       },
       {
         id: 'ibuprofeno',
@@ -601,7 +590,7 @@ export const categorias: Category[] = [
         tienda: 'Farmacia',
         notas: 'Antiinflamatorio.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('ibuprofen,tablets', 32),
+        imagen: img('1471864190282-a93a3070b9ec'),
       },
       {
         id: 'electrolitos',
@@ -611,7 +600,7 @@ export const categorias: Category[] = [
         comprar: '2 piezas',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('electrolyte,drink', 33),
+        imagen: img('1622542799864-aa69f99e0eec'),
       },
       {
         id: 'vitaminas',
@@ -621,7 +610,7 @@ export const categorias: Category[] = [
         comprar: '1 frasco',
         tienda: 'Farmacia / GNC',
         cantidad: 0, unidad: 'envases', critico: false,
-        imagen: ph('vitamins,supplement', 34),
+        imagen: img('1556228578-8c89e096adf2'),
       },
       {
         id: 'alcohol-antiseptico',
@@ -631,7 +620,7 @@ export const categorias: Category[] = [
         comprar: '1 botella',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'L', critico: false,
-        imagen: ph('antiseptic,alcohol', 35),
+        imagen: img('1584017911766-d451b3c7d993'),
       },
       {
         id: 'curitas',
@@ -641,7 +630,7 @@ export const categorias: Category[] = [
         comprar: '1 caja',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: ph('bandage,firstaid', 36),
+        imagen: img('1603398939848-10c23823ecc3'),
       },
       {
         id: 'antiacido',
@@ -651,7 +640,7 @@ export const categorias: Category[] = [
         comprar: '1 pieza',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: ph('antacid,medicine', 37),
+        imagen: img('1666210032544-f1bafb9d4f4b'),
       },
       {
         id: 'cubrebocas',
@@ -661,7 +650,7 @@ export const categorias: Category[] = [
         comprar: '1 caja',
         tienda: 'Farmacia',
         cantidad: 0, unidad: 'paquetes', critico: false,
-        imagen: ph('face,mask', 38),
+        imagen: img('1584464491033-06628f3a8b8a'),
       },
     ],
   },
@@ -733,7 +722,7 @@ export const categorias: Category[] = [
         tienda: 'Tintorería City Market',
         notas: 'Contar prendas, revisar daño, foto del ticket.',
         cantidad: 0, unidad: 'piezas', critico: false,
-        imagen: img('1582735689369-4fe89db7114c'),
+        imagen: img('1558175813-4c044d8cbf37'),
       },
       {
         id: 'paquetes',
