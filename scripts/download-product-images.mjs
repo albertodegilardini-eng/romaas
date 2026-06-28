@@ -1,51 +1,51 @@
 import { mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const Q = 'auto=compress&cs=tinysrgb&w=900&h=900&fit=crop&dpr=2';
+const Q = 'auto=compress&cs=tinysrgb&w=1000&h=1000&fit=crop&crop=center&dpr=2';
 const U = (id) => `https://images.unsplash.com/photo-${id}?${Q}`;
 const P = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?${Q}`;
 
-/** 66 unique, product-accurate photos — every item gets its own image. */
+/** Round 2 — sharper, unique, product-accurate photo per item. */
 const SOURCES = {
   // BEBIDAS
   'coca-cola': P(19504042),
-  'corona-light': U('1639513473133-dc1e5f12f83e'),
+  'corona-light': U('1608270586620-866526ca0788'),
   michelob: P(1267325),
   'agua-tonica': P(6029762),
-  'agua-bonafont': P(416528),
-  'cafe-fruta': U('1509042239860-f550ce710b93'),
+  'agua-bonafont': P(2930269),
+  'cafe-fruta': P(302899),
 
   // FRUTAS Y VERDURAS
-  toronjas: U('1587735243475-37f3d32a68c3'),
-  pepinos: U('1568702846914-96b305d2aaeb'),
-  limones: U('1582476803820-9e9e218e65b9'),
-  'mini-zanahorias': U('1598170845058-32b9d6a5da37'),
+  toronjas: P(143133),
+  pepinos: P(2329440),
+  limones: P(1414129),
+  'mini-zanahorias': P(1435899),
   nopales: U('1559181567-c3190ca9959b'),
-  'verdura-general': U('1557844352-761f2565b576'),
+  'verdura-general': P(128420),
 
   // CARNES
   bisteces: U('1558030006-450675393462'),
   'carne-asar': U('1529193591184-b1d58069ecdd'),
   'pollo-asar': U('1604908176997-125f25cc6f3d'),
   'jamon-pavo': U('1559847844-5315695dadae'),
-  'salchichas-pavo': U('1485921720978-9fca4e2c1a14'),
+  'salchichas-pavo': P(4518841),
   huevo: P(248412),
 
   // DESPENSA
-  espagueti: U('1551892374-ecf8754cf8b0'),
-  arroz: U('1536304929831-ee1ca9d44906'),
-  pan: U('1509440159596-0249088772ff'),
-  aceite: U('1474979266404-7eaacbcd87c5'),
-  'sal-condimentos': U('1585032226651-759b368d7246'),
-  tortillas: U('1565299585323-38d6b0865b47'),
-  'salsas-aderezos': U('1571942676516-bcab84649e44'),
+  espagueti: P(1438677),
+  arroz: P(33406),
+  pan: P(1775043),
+  aceite: P(33783),
+  'sal-condimentos': P(3692876),
+  tortillas: P(2098085),
+  'salsas-aderezos': P(5873633),
 
   // LIMPIEZA
   'bolsas-grandes': P(3997380),
   'bolsas-chicas': P(4217770),
   cloro: P(3828883),
   'jabon-trastes': P(4065158),
-  pinol: P(48889),
+  pinol: U('1585771724684-38269d6639fd'),
   'limpiador-bano': P(6195127),
   detergente: P(5591743),
   suavizante: P(5591741),
@@ -57,11 +57,11 @@ const SOURCES = {
   aromatizante: P(6580705),
   'papel-aluminio': P(4099237),
 
-  // ASEO PERSONAL
+  // ASEO PERSONAL — each unique
   shampoo: P(3782125),
-  acondicionador: U('1608245449333-f02da94cd5a6'),
+  acondicionador: P(4041397),
   'gel-bano': P(4467687),
-  desodorante: U('1620916565345-364f1a0e32ab'),
+  desodorante: P(4041396),
   'pasta-dental': P(6626113),
   'cepillo-dental': P(5836969),
   'enjuague-bucal': P(6502631),
@@ -69,10 +69,10 @@ const SOURCES = {
   'crema-afeitar': P(3998379),
   'hilo-dental': P(6626116),
 
-  // FARMACIA
+  // FARMACIA — each unique
   'receta-medica': P(4386467),
-  paracetamol: U('1584308665914-d65811c7805d'),
-  ibuprofeno: U('1471864190282-a93a3070b9ec'),
+  paracetamol: P(3683073),
+  ibuprofeno: P(40568),
   electrolitos: U('1551024709-8f23befc6f87'),
   vitaminas: P(3683080),
   'alcohol-antiseptico': U('1584017911766-d451b3c7d993'),
@@ -94,26 +94,34 @@ const SOURCES = {
   'foto-ticket': P(6863332),
 };
 
-// Fallbacks for any primary URL that 404s
 const FALLBACKS = {
-  'verdura-general': U('1557844352-761f2565b576'),
-  'agua-bonafont': P(2930269),
-  pinol: U('1585771724684-38269d6639fd'),
-  acondicionador: U('1608245449333-f02da94cd5a6'),
-  desodorante: U('1620916565345-364f1a0e32ab'),
-  paracetamol: U('1584308665914-d65811c7805d'),
-  'corona-light': P(995330),
+  'corona-light': U('1639513473133-dc1e5f12f83e'),
   'coca-cola': U('1629203851122-3726ecdf080e'),
+  nopales: P(36009),
+  'agua-bonafont': P(416528),
+  arroz: U('1536304929831-ee1ca9d44906'),
+  aceite: U('1474979266404-7eaacbcd87c5'),
+  pinol: P(48889),
+  acondicionador: U('1608245449333-f02da94cd5a6'),
+  desodorante: P(4467687),
+  paracetamol: P(4386467),
+  ibuprofeno: P(3683073),
+  'alcohol-antiseptico': P(3828883),
+  antiacido: P(3683080),
+  electrolitos: P(50594),
+  tortillas: U('1565299585323-38d6b0865b47'),
+  'salsas-aderezos': U('1571942676516-bcab84649e44'),
+  'bolsas-chicas': P(4099237),
 };
 
 const outDir = join(process.cwd(), 'public', 'products');
 mkdirSync(outDir, { recursive: true });
 
 async function download(id, url) {
-  const res = await fetch(url, { headers: { 'User-Agent': 'weekly-grocery-ai/2.0' } });
+  const res = await fetch(url, { headers: { 'User-Agent': 'weekly-grocery-ai/3.0' } });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  if (buf.length < 5000) throw new Error('too small');
+  if (buf.length < 8000) throw new Error('too small');
   writeFileSync(join(outDir, `${id}.jpg`), buf);
   return buf.length;
 }
@@ -141,6 +149,8 @@ for (const [id, url] of Object.entries(SOURCES)) {
   }
 }
 
-console.log(`\nDone: ${ok}/${Object.keys(SOURCES).length} ok`);
-if (failed.length) console.error('Failed:', failed.join(', '));
-process.exit(failed.length ? 1 : 0);
+console.log(`\nDone: ${ok}/${Object.keys(SOURCES).length}`);
+if (failed.length) {
+  console.error('Failed:', failed.join(', '));
+  process.exit(1);
+}

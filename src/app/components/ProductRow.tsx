@@ -13,7 +13,7 @@ import { bestLineTotal } from '../utils/pricing';
 export function ProductThumb({
   src,
   alt,
-  size = 56,
+  size = 60,
 }: {
   src?: string;
   alt: string;
